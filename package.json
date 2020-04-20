@@ -16,7 +16,7 @@
     "foo": "0.0.7"
   },
   "devDependencies": {
-    "request": "^2.81.0",
+    "request": "2.88.2",
     "tape": "^4.7.0"
   },
   "repository": {
