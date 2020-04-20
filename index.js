@@ -20,8 +20,10 @@ app.get('/', (req, res) => {
         else {
 
           let data = JSON.parse(response.body)
+          let time = Object.keys(data.data.spots)[0]
           res.render('pages/index', {
-            result: data.data
+            result: data.data,
+            date: time
           });
         };
         
