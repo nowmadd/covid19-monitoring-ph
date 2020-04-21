@@ -54,7 +54,6 @@ app.get('/', (req, res) => {
                     currentCount = x["Confirmed"] 
                     
                 })
-                console.log()
                 dailyCount.pop();
                 total.pop();
                 recovered.pop();
@@ -64,6 +63,15 @@ app.get('/', (req, res) => {
                 total.push(data.data.change.total_cases + total[total.length - 1])
                 death.push(data.data.change.deaths + death[death.length - 1])
                 recovered.push(data.data.change.recovered + recovered[recovered.length - 1])
+                
+                let show = (labels.length - 1)/2;
+                dailyCount.splice(0, (dailyCount.length - 1)/2 )
+                total.splice(0, (total.length - 1)/2 )
+                recovered.splice(0, (recovered.length - 1)/2)
+                death.splice(0, (death.length - 1)/2)
+                labels.splice(0, (labels.length - 1)/2)
+
+             
 
                 deathDataSet.data = death
                 deathDataSet.label = 'DEATHS'
@@ -101,6 +109,7 @@ app.get('/', (req, res) => {
                 historyData.labels = labels
 
                 res.render('pages/index', {
+                  show: show,
                   data: JSON.stringify(historyData),
                   result: data.data,
                   date: moment(time).format('LLL')
