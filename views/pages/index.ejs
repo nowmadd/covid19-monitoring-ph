@@ -53,12 +53,12 @@
       </div>
     </div> 
     </div>
-    <p id="yy"style="display:none"><%= data %></p>
+  
 </div>
-<div class="container ">
-
+<div class="container">
+  <h2 class="text-center text-muted"> HISTORY GRAPH</h2>
   <canvas id="myChart" width="400" height="150"></canvas>
-
+  <p id="yy"style="display:none"><%= data %></p>
 </div>
 <script>
   var ctx = document.getElementById('myChart').getContext('2d');
@@ -67,6 +67,11 @@
       type: 'line',
       data: JSON.parse(x),
       options: {
+          layout: {
+            padding: {
+              bottom: 50
+            }
+          },
           scales: {
               yAxes: [{
                   ticks: {
