@@ -47,3 +47,17 @@
       }
     }
 
+    hr.green {
+      border-top: 1px solid #5cb85c;
+    }
+
+    hr.red {
+      border-top: 1px solid #d9534f;
+    }
+
+    hr.info {
+      border-top: 1px solid #5bc0de;
+    }
+    
+    
+
