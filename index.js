@@ -35,6 +35,7 @@ app.get('/', (req, res) => {
 
                 let historyData = {}
                 let dataSet = []
+                let dailyCountSet = {}
                 let deathDataSet = {};
                 let recoveredDataSet = {};
                 let totalDataSet = {};
@@ -45,6 +46,24 @@ app.get('/', (req, res) => {
                 const death = history.map(x => x["Deaths"]);
                 const recovered = history.map(x => x["Recovered"]);
                 const total = history.map(x => x["Confirmed"]);
+                const dailyCount = []
+                var currentCount=0;
+                history.map((x, index) => {
+                    currentCount = x["Confirmed"] - currentCount
+                    dailyCount.push(currentCount)
+                    currentCount = x["Confirmed"] 
+                    
+                })
+                console.log()
+                dailyCount.pop();
+                total.pop();
+                recovered.pop();
+                death.pop();
+                labels[labels.length-1] = 'Today'
+                dailyCount.push(data.data.change.total_cases)
+                total.push(data.data.change.total_cases + total[total.length - 1])
+                death.push(data.data.change.deaths + death[death.length - 1])
+                recovered.push(data.data.change.recovered + recovered[recovered.length - 1])
 
                 deathDataSet.data = death
                 deathDataSet.label = 'DEATHS'
@@ -65,11 +84,18 @@ app.get('/', (req, res) => {
                 totalDataSet.borderColor = '#5bc0de'
                 totalDataSet.fill = false
                 totalDataSet.hidden = true
+                dailyCountSet.data = dailyCount
+                dailyCountSet.label = 'DAILY CASES COUNT'
+                dailyCountSet.type = 'bar'
+                dailyCountSet.backgroundColor = '#cfcfcf'
+                dailyCountSet.borderColor = '#cfcfcf'
+                dailyCountSet.fill = false
             
 
                 dataSet.push(totalDataSet);
                 dataSet.push(recoveredDataSet);
                 dataSet.push(deathDataSet);
+                dataSet.push(dailyCountSet);
 
                 historyData.datasets = dataSet
                 historyData.labels = labels
