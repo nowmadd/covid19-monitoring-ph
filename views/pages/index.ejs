@@ -21,7 +21,7 @@
             <h2 class="card-title text-center text-info">TOTAL CASES</h2>
             <p class="card-text ">
               <h2 class="text-center"><%= result.summary.total_cases %></h2>
-              <p class="h6 text-center text-muted">+ <%= result.change.total_cases %> </p>
+              <p class="h6 text-center text-muted"> <% if (result.change.total_cases ==0 ) { %><i> waiting for update</i> <% } else { %>+ <%= result.change.total_cases %><% } %> </p>
             </p>
           </div>
         </div>
@@ -32,7 +32,7 @@
                 <h2 class="card-title text-center text-success">RECOVERIES</h2>
                 <p class="card-text ">
                   <h2 class="text-center"><%= result.summary.recovered %></h2>
-                  <p class="h6 text-center text-muted">+ <%= result.change.recovered %> </p>
+                  <p class="h6 text-center text-muted"><% if (result.change.total_cases ==0 ) { %><i> waiting for update</i> <% } else { %>+ <%= result.change.recovered %> <% } %></p>
                 </p>
               </div>
             </div>
@@ -46,7 +46,7 @@
               <h2 class="card-title text-center text-danger">DEATHS</h2>
               <p class="card-text ">
                 <h2 class="text-center"><%= result.summary.deaths %></h2>
-                <p class="h6 text-center text-muted">+ <%= result.change.deaths %> </p>
+                <p class="h6 text-center text-muted"><% if (result.change.total_cases ==0 ) { %> <i> waiting for update</i> <% } else { %> + <%= result.change.deaths %> <% } %></p>
               </p>
             </div>
           </div>
